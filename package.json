@@ -1,6 +1,6 @@
 {
   "name": "translation-dictionary",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JavaScript gettext-style translation output library with sprintfs parameter replace.",
   "main": "index.js",
   "author": "Peter Rottmann <rottmann@inveris.de>",
