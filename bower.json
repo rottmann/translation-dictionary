@@ -22,10 +22,12 @@
   ],
   "ignore": [
     "**/.*",
-    "example",
     "bower_components",
     "lib",
     "node_modules",
-    "test"
+    "script",
+    "test",
+    "index.js",
+    "package.json"
   ]
 }
