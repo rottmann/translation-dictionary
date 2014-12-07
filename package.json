@@ -14,9 +14,11 @@
     "url": "https://github.com/rottmann/translation-dictionary.git"
   },
   "scripts": {
-    "test": "npm run jshint && mocha --recursive",
+    "test": "npm run jshint && mocha test/node/ --recursive",
     "jshint": "jshint lib/ test/",
-    "build": "./node_modules/webpack/bin/webpack.js --config script/webpack.config.js && ./node_modules/webpack/bin/webpack.js --config script/webpack.config.min.js && ./node_modules/webpack/bin/webpack.js --config script/webpack.config.woe.min.js"
+    "build": "npm run build-webpack && npm run build-bower",
+    "build-webpack": "./node_modules/webpack/bin/webpack.js --config script/webpack.config.js && ./node_modules/webpack/bin/webpack.js --config script/webpack.config.min.js && ./node_modules/webpack/bin/webpack.js --config script/webpack.config.woe.min.js",
+    "build-bower": "./script/bower-json-update"
   },
   "keywords": [
     "translation",

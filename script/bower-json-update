@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+var fs    = require('fs');
+var pkg   = require('../package.json');
+var bower = require('../bower.json');
+
+// replace variables
+bower.version     = pkg.version;
+bower.description = pkg.description;
+bower.keywords    = pkg.keywords;
+
+fs.writeFileSync('bower.json', JSON.stringify(bower, null, 2) + '\n', 'utf8');
