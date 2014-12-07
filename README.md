@@ -18,10 +18,10 @@ JavaScript gettext-style translation output library with [sprintf-js](https://gi
 
 ```html
 <!-- with EventEmitter ~9 kb -->
-<script src="bower_components/translation-dictionary/translation-dictionary.min.js"></script>
+<script src="bower_components/translation-dictionary/build/translation-dictionary.min.js"></script>
 
 <!-- or without EventEmitter ~6.4 kb -->
-<script src="bower_components/translation-dictionary/translation-dictionary.woe.min.js"></script>
+<script src="bower_components/translation-dictionary/build/translation-dictionary.woe.min.js"></script>
 ```
 
 
