@@ -1,4 +1,4 @@
-/*! translation-dictionary v0.1.0 | https://github.com/rottmann/translation-dictionary | Peter Rottmann <rottmann@inveris.de> | MIT */
+/*! translation-dictionary v0.1.1 | https://github.com/rottmann/translation-dictionary | Peter Rottmann <rottmann@inveris.de> | MIT */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();

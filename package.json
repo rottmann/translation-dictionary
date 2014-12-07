@@ -14,7 +14,7 @@
     "url": "https://github.com/rottmann/translation-dictionary.git"
   },
   "scripts": {
-    "test": "npm run jshint && mocha test/node/ --recursive",
+    "test": "npm run jshint && mocha test/ --recursive",
     "jshint": "jshint lib/ test/",
     "build": "npm run build-webpack && npm run build-bower",
     "build-webpack": "./node_modules/webpack/bin/webpack.js --config script/webpack.config.js && ./node_modules/webpack/bin/webpack.js --config script/webpack.config.min.js && ./node_modules/webpack/bin/webpack.js --config script/webpack.config.woe.min.js",

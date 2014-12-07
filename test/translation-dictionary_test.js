@@ -5,7 +5,7 @@ var spies  = require('chai-spies');
 var expect = chai.expect;
 chai.use(spies);
 
-var TranslationDictionary = require('../');
+var TranslationDictionary = require('../build/translation-dictionary.min');
 
 describe('Translation Dictionary tests', function() {
     var dict;
