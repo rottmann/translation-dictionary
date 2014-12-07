@@ -1,0 +1,61 @@
+{
+  "name": "translation-dictionary",
+  "version": "0.1.0",
+  "description": "JavaScript gettext-style translation output library with sprintfs parameter replace.",
+  "main": "index.js",
+  "author": "Peter Rottmann <rottmann@inveris.de>",
+  "license": "MIT",
+  "homepage": "https://github.com/rottmann/translation-dictionary",
+  "bugs": {
+    "url": "https://github.com/rottmann/translation-dictionary/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rottmann/translation-dictionary.git"
+  },
+  "scripts": {
+    "test": "npm run jshint && mocha --recursive",
+    "jshint": "jshint lib/ test/",
+    "build": "./node_modules/webpack/bin/webpack.js && ./node_modules/webpack/bin/webpack.js --config webpack.config.min.js && ./node_modules/webpack/bin/webpack.js --config webpack.config.woe.min.js"
+  },
+  "keywords": [
+    "translation",
+    "dictionary",
+    "translate",
+    "i18n",
+    "internationalization",
+    "gettext",
+    "sprintf"
+  ],
+  "dependencies": {
+    "eventemitter3": "^0.1.6",
+    "inherits": "^2.0.1",
+    "sprintf-js": "^1.0.2"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "chai-spies": "^0.5.1",
+    "jshint": "^2.5.10",
+    "mocha": "^2.0.1",
+    "webpack": "^1.4.13"
+  },
+  "jshintConfig": {
+    "camelcase": true,
+    "curly": false,
+    "eqeqeq": true,
+    "forin": true,
+    "latedef": true,
+    "newcap": true,
+    "undef": true,
+    "unused": true,
+    "trailing": true,
+    "node": true,
+    "browser": true,
+    "predef": [
+      "it",
+      "describe",
+      "beforeEach",
+      "afterEach"
+    ]
+  }
+}

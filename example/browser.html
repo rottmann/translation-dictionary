@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../build/translation-dictionary.js"></script>
+    </head>
+    <body>
+    Please open JavaScript-Console.
+    <script type="text/javascript">
+        var dict = new TranslationDictionary();
+
+        // --------------------------------------------------------------------------------
+        // en -> de (both have 1 plural form)
+        // --------------------------------------------------------------------------------
+        console.log('Translate from applications base locale en to de (both have 1 plural form)');
+
+        dict.registerTranslation('de', {
+            'car'                    : 'auto',
+            'car %d'                 : 'auto %d',
+            'car %d %s'              : 'auto %d %s',
+            'car %(count)d'          : 'auto %(count)d',
+            'car %(count)d %(name)s' : 'auto %(count)d %(name)s',
+            'car %2$d %1$d'          : 'auto %2$d %1$d',
+
+            'cars'                   : 'autos',
+            'cars %d'                : 'autos %d',
+            'cars %d %s'             : 'autos %d %s',
+            'cars %(count)d'         : 'autos %(count)d',
+            'cars %(count)d %(name)s': 'autos %(count)d %(name)s',
+            'cars %2$d %1$d'         : 'autos %2$d %1$d',
+        });
+
+        dict.setLocale('de');
+
+        // Singular
+        // args
+        console.log( dict.__('car') ); // 'auto'
+        console.log( dict.__('car %d', 47) ); // 'auto 47'
+        console.log( dict.__('car %d %s', 48, 'ABC') ); // 'auto 48 ABC'
+        // array
+        console.log( dict.__('car %d', [ 49 ]) ); // 'auto 49'
+        console.log( dict.__('car %d %s', [ 50, 'DEF' ]) ); // 'auto 50 DEF'
+        // object
+        console.log( dict.__('car %(count)d', { count: 51 }) ); // 'auto 51'
+        console.log( dict.__('car %(count)d %(name)s', { count: 52, name: 'GHI' }) ); // 'auto 4752 GHI'
+        // order
+        console.log( dict.__('car %2$d %1$d', [ 53, 11 ]) ); // 'auto 11 53'
+
+        // Plural
+        // args
+        console.log( dict._p('car', 'cars', 1) ); // 'auto'
+        console.log( dict._p('car', 'cars', 47) ); // 'autos'
+        console.log( dict._p('car %d', 'cars %d', 48) ); // 'autos 48'
+        console.log( dict._p('car %d %s', 'cars %d %s', 49, 'ABC') ); // 'autos 49 ABC'
+        // array
+        // important: the first argument must be the counter
+        console.log( dict._p('car %d', 'cars %d', [ 50 ]) ); // 'autos 50'
+        console.log( dict._p('car %d %s', 'cars %d %s', [ 51, 'DEF' ]) ); // 'autos 51 DEF'
+        // object
+        // important: a count-parameter must exist
+        console.log( dict._p('car %(count)d', 'cars %(count)d', { count: 52 }) ); // 'autos 52'
+        console.log( dict._p('car %(count)d %(name)s', 'cars %(count)d %(name)s',
+                   { count: 53, name: 'GHI' }) ); // 'autos 53 GHI'
+        // order
+        console.log( dict._p('car %2$d %1$d', 'cars %2$d %1$d', [ 54, 11 ]) ); // 'autos 11 54'
+
+        // --------------------------------------------------------------------------------
+        // en (1 plural) -> cs (2 plural forms)
+        // --------------------------------------------------------------------------------
+        console.log('Translate from applications base locale en to cs (cs has 2 plural forms)');
+
+        dict.registerPluralizer('cs', function(n) {
+            return (n === 1) ? 0 : (n >= 2 && n <= 4) ? 1 : 2;
+        }, 3);
+
+        dict.registerTranslation('cs', {
+            'wolve' : 'vlk',
+            'wolves': [
+                'vlci',
+                'vlků'
+            ]
+        });
+
+        dict.setLocale('cs');
+
+        console.log( dict._p('wolve', 'wolves', 1) ); // 'vlk'
+        console.log( dict._p('wolve', 'wolves', 2) ); // 'vlci'
+        console.log( dict._p('wolve', 'wolves', 3) ); // 'vlci'
+        console.log( dict._p('wolve', 'wolves', 4) ); // 'vlci'
+        console.log( dict._p('wolve', 'wolves', 5) ); // 'vlků'
+
+        // --------------------------------------------------------------------------------
+        // cs (2 plural forms) -> en (1 plural)
+        // --------------------------------------------------------------------------------
+        console.log('Translate from applications base locale cs to en (cs has 2 plural forms)');
+
+        dict.setBaseLocale('cs', 3);
+
+        dict.registerPluralizer('cs', function(n) {
+            return (n === 1) ? 0 : (n >= 2 && n <= 4) ? 1 : 2;
+        }, 3);
+
+        dict.registerTranslation('en', {
+            'vlk' : 'wolve',
+            'vlci': 'wolves',
+            'vlků': 'wolves'
+        });
+
+        dict.setLocale('en');
+
+        console.log( dict._p('vlk', 'vlci', 'vlků', 1) ); // 'wolve'
+        console.log( dict._p('vlk', 'vlci', 'vlků', 2) ); // 'wolves'
+        console.log( dict._p('vlk', 'vlci', 'vlků', 3) ); // 'wolves'
+        console.log( dict._p('vlk', 'vlci', 'vlků', 4) ); // 'wolves'
+        console.log( dict._p('vlk', 'vlci', 'vlků', 5) ); // 'wolves'
+
+        // stay in baseLocale 'cs'
+        dict.setLocale('cs');
+
+        console.log( dict._p('vlk', 'vlci', 'vlků', 1) ); // 'vlk'
+        console.log( dict._p('vlk', 'vlci', 'vlků', 2) ); // 'vlci'
+        console.log( dict._p('vlk', 'vlci', 'vlků', 3) ); // 'vlci'
+        console.log( dict._p('vlk', 'vlci', 'vlků', 4) ); // 'vlci'
+        console.log( dict._p('vlk', 'vlci', 'vlků', 5) ); // 'vlků'
+    </script>
+    </body>
+</html>
