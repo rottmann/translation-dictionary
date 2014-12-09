@@ -58,10 +58,11 @@ Return the current locale (default: 'en').
 #### registerPluralizer (locale, pluralizer[, nPlurals=2])
 
 Set a pluralizer for a locale with the number of plurals.
+Visit [localization-guide](http://localization-guide.readthedocs.org/en/latest/l10n/pluralforms.html) for pluralforms and [unicode.org](http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html) for details and examples.
 
 ```js
 registerPluralizer('cs', function(n) {
-    return (n === 1) ? 0 : ( n >= 2 && n <= 4) ? 1 : 2; 
+    return (n === 1) ? 0 : ( n >= 2 && n <= 4) ? 1 : 2;
 }, 3);
 ```
 
@@ -123,7 +124,7 @@ Alias for translate ().
 #### translatePlural (_arguments_)
 
 Translate a text as singular or plural, depending on the count.
-  
+
 arguments[0] The singular text to translate.
 arguments[1..(nPlurals-1)] The plural text to translate.
 arguments[nPlurals..n]     The count and parameters for sprintf to replace markers in the text.
